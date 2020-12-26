@@ -1,0 +1,20 @@
+.music-progress-bar{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10%;
+  border: 0;
+  background: #7F8C8D;
+  cursor: pointer;
+  outline-width: 0px;
+}
+
+
+
+.music-progress-bar::-webkit-slider-thumb {
+  appearance: none;
+  width: 1vh;
+  height: 2vh;
+  background: #27ae60;
+  cursor: pointer;
+}

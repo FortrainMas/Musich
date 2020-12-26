@@ -1,0 +1,113 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+input[type=text] {
+    width: 90%;
+    padding: 0px 20px;
+    font-size: 3em;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+button{
+    width: 18%;
+    padding-top: 18%;
+    background-color: #2980B9;
+    overflow: hidden;
+    border: none;
+    outline: 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100%;
+}
+
+.content{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-bar{
+    flex: 1;
+    background: #2C3E50;
+    height: 100%;
+}
+
+.main{
+    flex: 14;
+    background-color: #34495E;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-part{
+    flex:8;
+    display: flex;
+    align-items: center;
+}
+
+.right-part{
+    height: 85%;
+    flex:9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-self: center;
+}
+
+.image{
+    width: 70%;
+    padding-top: 70%;
+    background-image: url("Wolfgang-amadeus-mozart_1.jpg");
+    background-repeat: no-repeat;
+    margin-left: 20%;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+
+input.song-name{
+    font-size: 5em;
+    color: #ECF0F1;
+
+}
+
+input.song-author{
+    font-size:1.5em;
+    color: #95A5A6;
+}
+
+.music-functionality{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    height: 25%;
+    width: 70%;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+    align-self: center;
+}
+
+.previous-button{
+    background-image: url('../../assets/baseline-skip-previous.svg');
+}
+
+.pause-button{
+    background-image: url('../../assets/play.svg');
+}
+
+.next-button{
+    background-image: url('../../assets/play-track-next.svg');
+}

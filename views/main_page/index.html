@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="musicProgressBarStyle.css">
+</head>
+<body style="background: white;">
+    <div class="content" style="background-color: #2C3E50;">
+        <div class="left-bar"></div>
+        <div class="main">
+            <div class="left-part">
+                <div class="image"></div>
+            </div>
+            <div class="right-part">
+                <div class="song-information">
+                    <input type = "text" class="song-name" value="Die Zauberflöte">
+                    <input type = "text" class="song-author" value="Wolfgang Amadeus Mozart">
+                    <audio id="listen" src="../../Green Day - Say Goodbye_(newtopmp3.org).mp3">
+                        ERROR
+                    </audio>
+                </div>
+                <div class="music-functionality">
+                    <input type="range" class="music-progress-bar" min="0" max="1000" onchange="change(this.value)">
+                    <div class="buttons">
+                        <button class = "previous-button" onclick="onPreviousButton"></button>
+                        <button class = "pause-button"></button>
+                        <button class = "next-button" onclick="onNextButton"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
