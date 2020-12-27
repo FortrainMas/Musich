@@ -1,6 +1,12 @@
+const musicTags = require('../../utils/musicTags')
+
 let state = {
-    isSongPlaying: false
+    isSongPlaying: false,
+    songName: 'song_with_tags.mp3'
 }
+
+
+
 
 //Hidden audio tag
 const hear = document.getElementById('listen');
@@ -8,9 +14,24 @@ const hear = document.getElementById('listen');
 const progressBar = document.querySelector('.music-progress-bar')
 //Buttons under progress bar
 const pauseButton = document.querySelector('.pause-button')
+//Input field with name of song, can be changed
+const songName = document.querySelector('.song-name')
+const songAuthor = document.querySelector('.song-author')
+
+async function setSongData()
+{
+    const songPath = process.cwd()+ '\\' + state.songName
+    const tags = await musicTags.readSongData(songPath)
+    songName.value = tags.name
+    songAuthor.value = tags.artist
+}
+
+
+setSongData()
+
 
 //Pause music can be used by pause button, by system pause button, etc.
-//So it is being used when audio tag stops or when you press pause button
+//So it is being used when audio tag stops or when user presses pause button
 function pauseMusic(){
     state.isSongPlaying = false
     pauseButton.style.cssText = "background-image: url('../../assets/play.svg');"
@@ -18,20 +39,12 @@ function pauseMusic(){
 }
 
 //Play music can be used by play button, by system play button, etc.
-//So it is being used when audio tag stats playing or when you press play button
+//So it is being used when audio tag stats playing or when user presses play button
 function playMusic(){
     state.isSongPlaying = true
     pauseButton.style.cssText = "background-image: url('../../assets/pause.svg');"
     hear.play()
 }
-
-hear.addEventListener('pause', (e) => {
-    pauseMusic()
-})
-
-hear.addEventListener('play', ()=>{
-    playMusic()
-})
 
 //Set the point on the music progress bar, depends on the current time of the music(audio tag)
 function setMusicProgress(){
@@ -50,19 +63,42 @@ function setMusicMoment(){
     hear.currentTime = currentTime
 }
 
+//If music is playing now, pause button stops it, in the other way music starts playing
 pauseButton.onclick = () => {
-    console.log('Stuff')
     const isSongPlaying = state.isSongPlaying
     if(isSongPlaying){
         pauseMusic()
     }else{
         playMusic()
     }
-    return 'sfd'
 }
 
+//Pause music when music pauses in audio element.
+//First of all it's for case when user press pause button on keyborad or kind of.
+hear.addEventListener('pause', (e) => {
+    pauseMusic()
+})
+
+//Starts to play music when music starts to play in audio element.
+//First of all it's for case when user press play button on keyborad or kind of.
+hear.addEventListener('play', ()=>{
+    playMusic()
+})
+
+//When user set music time moment on music progress bar, we have to update music current time in audio tag
 progressBar.onchange = () => {
     setMusicMoment()
 }
 
+//Every 0,5 seconds programm updates progress bar's progress depends on current music time
 setInterval(setMusicProgress, 500)
+
+
+songName.addEventListener('change', () => {
+    const tags = {
+        'NAME': songName.value
+    }
+    console.log(tags)
+    musicTags.writeSongData(process.cwd()+ '\\' + state.songName, tags)
+    songName.value = 'Stasyan'
+})

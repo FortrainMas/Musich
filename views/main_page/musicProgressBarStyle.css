@@ -7,6 +7,7 @@
   background: #7F8C8D;
   cursor: pointer;
   outline-width: 0px;
+  overflow: hidden;
 }
 
 
@@ -14,7 +15,7 @@
 .music-progress-bar::-webkit-slider-thumb {
   appearance: none;
   width: 1vh;
-  height: 2vh;
-  background: #27ae60;
+  height: 3vh;
+  background: #2980b9;
   cursor: pointer;
 }
