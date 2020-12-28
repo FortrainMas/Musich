@@ -1,4 +1,6 @@
 const { app, BrowserWindow } = require('electron')
+const { saveState, loadState } = require('./utils/stateWorker.js')
+
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -6,7 +8,8 @@ function createWindow () {
     height: 1080,
     focusable:true,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      enableRemoteModule: true
     }
   })
   win.maximize()
@@ -15,8 +18,13 @@ function createWindow () {
 
 app.whenReady().then(createWindow)
 
+
+global.state = loadState()
+
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
+    saveState(global.state)
     app.quit()
   }
 })

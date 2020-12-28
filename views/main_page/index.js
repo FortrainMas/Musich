@@ -1,10 +1,8 @@
 const musicTags = require('../../utils/musicTags')
-
-let state = {
-    isSongPlaying: false,
-    songName: 'song_with_tags.mp3'
-}
-
+const remote = require('electron').remote
+console.log(require('electron'))
+console.log(require('electron').remote.getGlobal('state'))
+const state = require('electron').remote.getGlobal('state')
 
 
 
@@ -17,18 +15,28 @@ const pauseButton = document.querySelector('.pause-button')
 //Input field with name of song, can be changed
 const songName = document.querySelector('.song-name')
 const songAuthor = document.querySelector('.song-author')
+const songPath = process.cwd()+ '\\' + state.songName
 
-async function setSongData()
+//Set song to play
+async function setSong(song){
+    hear.src = songPath
+    setSongData(songPath)
+    if(state.isSongPlaying){
+        playMusic()
+    }else{
+        pauseMusic()
+    }
+}
+
+setSong(songPath)
+
+//Set different data like name(name of music file) or different ID3 tags
+async function setSongData(songPath)
 {
-    const songPath = process.cwd()+ '\\' + state.songName
     const tags = await musicTags.readSongData(songPath)
     songName.value = tags.name
     songAuthor.value = tags.artist
 }
-
-
-setSongData()
-
 
 //Pause music can be used by pause button, by system pause button, etc.
 //So it is being used when audio tag stops or when user presses pause button
@@ -98,7 +106,12 @@ songName.addEventListener('change', () => {
     const tags = {
         'NAME': songName.value
     }
-    console.log(tags)
-    musicTags.writeSongData(process.cwd()+ '\\' + state.songName, tags)
-    songName.value = 'Stasyan'
+    musicTags.writeSongData(songPath, tags)
+})
+
+songAuthor.addEventListener('change', ()=>{
+    const tags = {
+        'TPE1': [songAuthor.value]
+    }
+    musicTags.writeSongData(songPath, tags)
 })

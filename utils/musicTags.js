@@ -41,10 +41,12 @@ async function writeSongData(songPath, tags){
         if(tag == 'NAME'){
             songName = tags[tag]
         }else{
+            console.log(tag)
             updatedSong.setFrame(tag, tags[tag])
-            updatedSong.addTag()
+            
         }
     }
+    updatedSong.addTag()
     //Save file
     saveSong(songPath, songName, songExtension, updatedSong)
 }
@@ -54,7 +56,7 @@ async function saveSong(songPath, songName, songExtension, updatedSong){
     const updatedSongBuffer = Buffer.from(updatedSong.arrayBuffer);
     const fullSongFileName = songName + songExtension
     fs.writeFile(fullSongFileName, updatedSongBuffer, (e)=>{console.log('Success')});
-    //fs.unlink(songPath)
+    fs.unlink(songPath, (e) => {console.log('Success')})
 }
 
 //Return song name without extension by path to the song
