@@ -15,7 +15,7 @@ const pauseButton = document.querySelector('.pause-button')
 //Input field with name of song, can be changed
 const songName = document.querySelector('.song-name')
 const songAuthor = document.querySelector('.song-author')
-const songPath = process.cwd()+ '\\' + state.songName
+const songPath = state.songName
 
 //Set song to play
 async function setSong(song){

@@ -2,26 +2,6 @@ const NodeID3 = require('node-id3')
 const ID3Writer = require('browser-id3-writer')
 const path = require('path');
 const fs = require('fs');
-const { update } = require('node-id3');
-
-const songBuffer = fs.readFileSync('Green Day - Say Goodbye_(newtopmp3.org).mp3');
-const coverBuffer = fs.readFileSync('SvgFileService.png');
-
-const writer = new ID3Writer(songBuffer);
-writer.setFrame('TIT2', 'Home')
-      .setFrame('TPE1', ['Eminem', '50 Cent'])
-      .setFrame('TALB', 'Friday Night Lights')
-      .setFrame('TYER', 2004)
-      .setFrame('APIC', {
-          type: 3,
-          data: coverBuffer,
-          description: 'Super picture'
-      });
-writer.addTag();
-
-const taggedSongBuffer = Buffer.from(writer.arrayBuffer);
-fs.writeFileSync('song_with_tags.mp3', taggedSongBuffer);
-
 
 //Return song's tags and name of the song
 async function readSongData(songPath){
@@ -54,9 +34,18 @@ async function writeSongData(songPath, tags){
 //Save song data: tags and name. This function remove old version of music
 async function saveSong(songPath, songName, songExtension, updatedSong){
     const updatedSongBuffer = Buffer.from(updatedSong.arrayBuffer);
-    const fullSongFileName = songName + songExtension
-    fs.writeFile(fullSongFileName, updatedSongBuffer, (e)=>{console.log('Success')});
+
+    //I need next two lines to get a way to song which is being updated
+    const separatedSongPath = songPath.split('\\')
+    const newSongPath = separatedSongPath.slice(0, separatedSongPath.length - 1).join('\\')
+
+    //Full name of the song is the path to song, its name and its extension
+    const fullSongFileName = newSongPath + '\\' + songName + songExtension
+
+
+    //Save new version of song and delete old one
     fs.unlink(songPath, (e) => {console.log('Success')})
+    fs.writeFile(fullSongFileName, updatedSongBuffer, (e)=>{console.log('Success')});   
 }
 
 //Return song name without extension by path to the song
