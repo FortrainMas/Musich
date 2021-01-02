@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="musicProgressBarStyle.css">
+</head>
+<body style="background: white;">
+    
+    <div class="content" style="background-color: #2C3E50;">
+        <div class="left-bar"></div>
+        <div class="right-content">
+            <div class="playlist-chooser">
+                <h1 class = "current-playlist-name">My playlist</h1>
+                <image src="../../assets/expand-button.svg" class = "change-playlist-button"> </image>
+            </div>
+            <div class="main">
+                <div class="songs">
+                    <div class="song">
+                        <div class="song-image"></div>
+                        <div class="song-data">
+                            <h3>Die Zauberflöte</h3>
+                            <h5>Wolfgang Amadeus Mozart</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="source-menus">
+                    <div class="add-source, source-menu">
+                        <h3>Add source</h3>
+                        <div class="source-menu-content">
+                            <input type = "text" class="source-path" value="Die Zauberflöte">
+                            <img src="../../assets/plus.svg" alt="" srcset="">
+                        </div>
+                    </div>
+                    <div class="remove-source, source-menu">
+                        <h3>Remove source</h3>
+                        <div class="source-menu-content">
+                            <input type = "text" class="source-path" value="Die Zauberflöte">
+                            <img src="../../assets/delete.svg" alt="" srcset="">
+                        </div>
+                        </div>
+                    </div>
+                
+            </div>
+            <div class="mus-player">
+                <div class="buttons">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
