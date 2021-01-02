@@ -3,15 +3,6 @@
     margin: 0px;
 }
 
-input[type=text] {
-    width: 90%;
-    padding: 0px 20px;
-    font-size: 1em;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    border: none;
-    background: none;
-    outline: none;
-}
 
 button{
     width: 18%;
@@ -28,6 +19,7 @@ button{
 h1,h2,h3,h4,h5,h6{
     color: #ECF0F1;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 500;
 }
 
 .content{
@@ -53,38 +45,109 @@ h1,h2,h3,h4,h5,h6{
 
 
 .playlist-chooser{
-    flex:1;
+    flex:2;
     display: flex;
     flex-direction: row;
     padding-left: 3%;
     padding-top: 1%;
+    font-size: 1vw;
 }
 
 .change-playlist-button{
-    height: 30%;
+    height: 45%;
     padding-left: 1%;
 }
 
 .main{
-    flex: 6;
+    flex: 16;
     background-color: #34495E;
     height: 100%;
     display: flex;
     flex-direction: row;
 }
 
+/*#region songs list*/
 .songs{
     flex: 5;
     display: flex;
-    justify-content: space-around;
-    flex-direction: column;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0px 5% 1% 3%;
 }
 
 .song{
-    flex: 1;
-    height: 18%;
+    height: 15%;
+    width: 45%;
+    background-color: #2C3E50;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 0.7vw;
+    overflow: hidden;
 }
 
+.song-image{
+    background-image: url('../main_page//Wolfgang-amadeus-mozart_1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex: 1;
+    height: 100%;
+}
+
+.song-data{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+    flex: 3;
+}
+
+.song-data h3{
+    font-size: 1.7vw;
+    color: #ECF0F1;
+}
+
+.song-data h5{
+    font-size: 0.9vw;
+    color: #95A5A6;
+}
+
+.song-functions{
+    flex: 1;
+    margin-right: 2%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.song-functions div{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 5%;
+    width: 30%;
+}
+
+.play{
+    background-image: url('../../assets/startMusic.svg');
+}
+
+.like{
+    background-image: url('../../assets/like.svg');
+}
+
+.add-to-playlist{
+    background-image: url('../../assets/album.svg');
+}
+
+.setting{
+    background-image: url('../../assets/settings.svg');
+}
+/*#endregion songs list*/
+
+/*#region Sources stuff*/
 .source-menus{
     flex: 1.3;
     display: flex;
@@ -95,8 +158,8 @@ h1,h2,h3,h4,h5,h6{
 
 .source-menu{
     background-color: #2C3E50;
-    border-bottom-left-radius: 1em;
-    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
     height:14%;
     margin-bottom: 15%;
     padding: 2%;
@@ -104,7 +167,7 @@ h1,h2,h3,h4,h5,h6{
 
 .source-menu h3{
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-size: 2em;
+    font-size: 1.6vw;
 }
 
 .source-menu-content{
@@ -120,9 +183,9 @@ h1,h2,h3,h4,h5,h6{
     border:none;
     outline: none;
     padding: 1.5%;
-    border-radius: 5px;
+    border-radius: 0.3vw;
     width: 70%;
-    font-size: 1.6em;
+    font-size: 1.3vw;
 }
 
 .source-menu-content img{
@@ -130,56 +193,16 @@ h1,h2,h3,h4,h5,h6{
     height: 10%;
     margin-right: 10%;
 }
+/*#endregion Sources stuff*/
+
 
 .mus-player{
-    flex: 1;
+    flex: 3;
     background-color: #2C3E50;
 }
 
-.left-part{
-    flex:8;
-    display: flex;
-    align-items: center;
-}
-
-.right-part{
-    height: 85%;
-    flex:9;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-self: center;
-}
-
-.image{
-    width: 70%;
-    padding-top: 70%;
-    background-image: url("Wolfgang-amadeus-mozart_1.jpg");
-    background-repeat: no-repeat;
-    margin-left: 20%;
-    background-size: cover;
-    border-radius: 10px;
-}
 
 
-input.song-name{
-    font-size: 5em;
-    color: #ECF0F1;
-}
-
-input.song-author{
-    font-size:1.5em;
-    color: #95A5A6;
-}
-
-.music-functionality{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: space-around;
-    height: 25%;
-    width: 70%;
-}
 
 .buttons{
     display: flex;

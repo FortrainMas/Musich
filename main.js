@@ -13,7 +13,7 @@ function createWindow () {
     }
   })
   win.maximize()
-  win.loadFile('./views/main_page/index.html')
+  win.loadFile('./views/playlists/index.html')
 }
 
 app.whenReady().then(createWindow)
