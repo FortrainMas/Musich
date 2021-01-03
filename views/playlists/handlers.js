@@ -18,5 +18,3 @@ function changeDropdownVisibility(){
 
 dropdownButton.onclick = changeDropdownVisibility
 currentPlaylistName.onclick = changeDropdownVisibility
-
-setInterval(doStuff, 200000)
