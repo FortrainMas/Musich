@@ -147,6 +147,45 @@ h1,h2,h3,h4,h5,h6{
 }
 /*#endregion songs list*/
 
+
+.change-songs-menu{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-content: center;
+}
+
+.songs-menu-content{
+    height: 80%;
+    width: 8%;
+    margin-right: 24%;
+    background-color: #2C3E50;
+    border-radius: 5%;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.songs-menu-content div{
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 78%;
+    width: 22%;
+    background-position-y: center;
+}
+
+.previous-song{
+    background-image: url('../../assets//back.svg');
+}
+
+.next-song{
+    background-image: url('../../assets/next.svg');
+    background-position-x: right;
+}
+
 /*#region Sources stuff*/
 .source-menus{
     flex: 1.3;
@@ -193,6 +232,7 @@ h1,h2,h3,h4,h5,h6{
     height: 10%;
     margin-right: 10%;
 }
+
 /*#endregion Sources stuff*/
 
 
