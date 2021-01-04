@@ -10,8 +10,15 @@ const path = '../state.json'
 
 //Save state to state.json file. It should be used when user quit the programm
 function saveState(state){
-    state = JSON.stringify(state)
-    fs.writeFile(path, state, (e) => {console.log('State saved')})
+    console.log(state.songName)
+    const normalizedState = {
+        songName: state.songName,
+        isSongPlaying: state.isSongPlaying,
+        playedTime: state.playedTime,
+        playlist: state.playlist
+    }
+    state = JSON.stringify(normalizedState)
+    fs.writeFile('state.json', state, (e) => {console.log(e)})
 }
 
 //Load state from state.json file. And return parsed version of this file, just object

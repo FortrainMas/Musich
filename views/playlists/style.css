@@ -69,7 +69,7 @@ h1,h2,h3,h4,h5,h6{
 
 .playlist-chooser .dropdown{
     background-color:#2c3e50;
-    display: block;
+    display: none;
     position: absolute;
     overflow: auto;
     top: 7%;
@@ -94,7 +94,7 @@ h1,h2,h3,h4,h5,h6{
 
 .change-playlist-button{
     height: 45%;
-    padding-left: 1%;
+    margin-left: 1%;
 }
 
 /*#endregion Choose plyalist */

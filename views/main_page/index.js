@@ -1,5 +1,6 @@
 const musicTags = require('../../utils/musicTags')
 const remote = require('electron').remote
+const {saveState} = require('../../utils/stateWorker')
 
 //Hidden audio tag
 const hear = document.getElementById('listen');
@@ -20,8 +21,9 @@ let state = remote.getGlobal('state')
 
 //Set song to play
 async function setSong(){
-    const song = state.songName
+    const song = remote.getGlobal('state').songName
     hear.src = song
+    hear.currentTime = state.playedTime
     setSongData(song)
     if(state.isSongPlaying){
         playMusic()
@@ -59,6 +61,8 @@ function playMusic(){
 //Set the point on the music progress bar, depends on the current time of the music(audio tag)
 function setMusicProgress(){
     const progress = 1000 * (hear.currentTime / hear.duration)
+    remote.getGlobal('state').playedTime = progress;
+    saveState(remote.getGlobal('state'))
     progressBar.value = progress;
 }
 
@@ -77,13 +81,16 @@ function setMusicMoment(){
 //Set new song, for that function use another function - setSong
 //Replay the playlist in case the song was last and set the next song in the other way
 function setNextSong(){
+    remote.getGlobal('state').playedTime = 0;
     const newState = remote.getGlobal('state')
-    const indexOfCurrentSong = newState.playList.indexOf(newState.songName)
-    if(indexOfCurrentSong >= newState.playList.length){
-        newState.songName = newState.playList[0]
+    const indexOfCurrentSong = newState.playlist.indexOf(newState.songName)
+    if(indexOfCurrentSong >= newState.playlist.length - 1){
+        newState.songName = newState.playlist[0]
     }else{
-        newState.songName = newState.playList[indexOfCurrentSong + 1]
+        newState.songName = newState.playlist[indexOfCurrentSong+1]
     }
+    remote.getGlobal('state').songName = newState.songName
+    saveState(remote.getGlobal('state'))
 
     setSong()
 }
@@ -91,14 +98,16 @@ function setNextSong(){
 //Set new song, for that function use another function - setSong
 //Play the last song in playlist if current song was first or play previous song in playlist
 function setPreviousSong(){
+    remote.getGlobal('state').playedTime = 0;
     const newState = remote.getGlobal('state')
-    const indexOfCurrentSong = newState.playList.indexOf(newState.songName)
+    const indexOfCurrentSong = newState.playlist.indexOf(newState.songName)
     if(indexOfCurrentSong <= 0){
-        newState.songName = newState.playList[newState.playList.length - 1]
+        newState.songName = newState.playlist[newState.playlist.length - 1]
     }else{
-        newState.songName = newState.playList[indexOfCurrentSong - 1]
+        newState.songName = newState.playlist[indexOfCurrentSong - 1]
     }
-
+    remote.getGlobal('state').songName = newState.songName
+    saveState(remote.getGlobal('state'))
     setSong()
 }
 
@@ -140,7 +149,7 @@ progressBar.onchange = () => {
 }
 
 //Every 0,5 seconds programm updates progress bar's progress depends on current music time
-setInterval(setMusicProgress, 500)
+setInterval(setMusicProgress, 750)
 
 
 
